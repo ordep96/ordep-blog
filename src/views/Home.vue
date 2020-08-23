@@ -1,18 +1,27 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="container">
+    <Posts :posts="posts"/>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import { mapGetters, mapActions } from 'vuex'
+import Posts from '@/components/Posts/Posts'
 
 export default {
   name: 'Home',
   components: {
-    HelloWorld
+    Posts
+  },
+  computed: {
+    ...mapGetters('login',['user']),
+    ...mapGetters('posts',['posts'])
+  },
+  methods: {
+    ...mapActions('posts', ['fetchPosts'])
+  },
+  mounted () {
+    this.fetchPosts();
   }
 }
 </script>

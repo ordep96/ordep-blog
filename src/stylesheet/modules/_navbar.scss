@@ -1,0 +1,27 @@
+.navbar {
+  background: $linen;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px 10px 20px;
+  &__logo {
+    text-transform: uppercase;
+    font-weight: bold;
+    font-family: $poppins;
+    color: $cod_gray;
+  }
+  &__menu {
+    list-style: none;
+    padding: 0;
+    display: flex;
+  }
+  &__item {
+    padding: 20px;
+  }
+  &__user-photo {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+  }
+}

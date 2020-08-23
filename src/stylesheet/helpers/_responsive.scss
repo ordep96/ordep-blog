@@ -1,0 +1,69 @@
+$breakpoint: (
+  small   : 0,
+  medium  : 45em,
+  large   : 80em,
+  xlarge  : 90em,
+  xxlarge : 120em
+);
+
+$orientations:(
+  landscape:landscape,
+  portrait:portrait
+);
+
+@mixin from($md){
+
+  @if map-has-key($breakpoint,$md){
+
+    @media screen and (min-width:map-get($breakpoint,$md)){
+      @content;
+    }
+  }
+
+};
+
+@mixin fromWithOrientation($md,$orientation){
+  @if map-has-key($breakpoint,$md){
+    @media screen and (min-width:map-get($breakpoint,$md)) and (orientation:map-get($orientations,$orientation)){
+      @content;
+    }
+  }
+}
+
+
+
+@mixin to($md){
+  @if map-has-key($breakpoint,$md ){
+    @media screen and (max-width:map-get($breakpoint,$md)){ @content; }
+  }
+};
+
+
+@mixin fromTo($from,$to){
+
+  @if map-has-key($breakpoint,$from) and map-has-key($breakpoint, $to){
+    @media screen and (min-width:map-get($breakpoint,$from)) and (max-width:map-get($breakpoint,$to)){
+      @content;
+    }
+  }
+
+}
+
+@mixin fromToWithOrientation($from,$to,$orientation){
+
+  @if map-has-key($breakpoint,$from) and map-has-key($breakpoint, $to){
+    @media screen and (min-width:map-get($breakpoint,$from)) and (max-width:map-get($breakpoint,$to)) and (orientation:map-get($orientations,$orientation)){
+      @content;
+    }
+  }
+
+
+}
+
+
+@mixin orientationScreen($orientation){
+  @if map-has-key($orientations, $orientation){
+    @media screen and (orientation:map-get($orientations,$orientation)){@content}
+  }
+
+};

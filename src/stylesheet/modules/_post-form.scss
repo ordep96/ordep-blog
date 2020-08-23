@@ -1,0 +1,37 @@
+.editr {
+  width: 100%;
+  background: $white;
+  margin-top: 10px;
+  @include from(large) {
+    width: 100%;
+  }
+  &--toolbar {
+    width: 100%;
+    overflow-y: auto;
+  }
+}
+
+.post-form {
+  display: grid;
+  grid-template-columns: 100%;
+  @include from(large) {
+    grid-template-columns: 3fr 1fr;
+    grid-gap: 20px;
+  }
+  &__box {
+    background: $white;
+    padding: 10px;
+  }
+  &__box-title {
+    font-weight: bold;
+    font-size: 14px;
+    font-family: $poppins;
+    margin-bottom: 10px;
+  }
+  &__btn {
+    margin-top: 10px;
+    @include from(large) {
+      margin-top: 0;
+    }
+  }
+}

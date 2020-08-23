@@ -1,0 +1,23 @@
+body {
+  background: $cod_gray;
+}
+
+.container {
+  width: 90%;
+  margin: auto;
+}
+
+.content-page {
+  margin-top: 40px;
+  padding-left: 80px;
+}
+
+.text-title {
+  color: $white;
+  font-family: $poppins;
+}
+
+.mt-0 {
+ margin-top: 0 !important;
+}
+

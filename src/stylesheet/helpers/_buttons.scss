@@ -1,0 +1,19 @@
+.btn {
+  background: $fuzzy_brown;
+  border: none;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  color: $white;
+  cursor: pointer;
+  text-transform: uppercase;
+  display: block;
+  &--small {
+    width: 25%;
+  }
+  &--medium {
+    width: 50%;
+  }
+  &--full {
+    width: 100%;
+  }
+}
