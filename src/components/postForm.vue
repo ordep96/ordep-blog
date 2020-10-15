@@ -8,7 +8,7 @@
             <input type="text" name="title" placeholder="Add title" v-model="post.title">
           </div>
           <div class="post-form__content-mysiwyg">
-            <wysiwyg v-model="post.content" />
+            <vue-editor class="mysiwyg" :customModules="customModulesForEditor" :editorOptions="editorSettings" v-model="post.content"></vue-editor>
           </div>
         </div>
         <div>
@@ -25,12 +25,15 @@
 
 <script>
 import { AtomSpinner } from 'epic-spinners'
+import { VueEditor, Quill } from 'vue2-editor'
+import { ImageDrop } from 'quill-image-drop-module'
 import { mapActions, mapGetters } from 'vuex' 
 
 export default {
   name: 'postForm',
   components: {
-    AtomSpinner
+    AtomSpinner,
+    VueEditor
   },
   data: () => ({
     post: {
@@ -38,6 +41,17 @@ export default {
       content: '',
       featuredImage: '',
       idUser: ''
+    },
+    customModulesForEditor: [
+      {
+        alias: 'imageDrop',
+        module: ImageDrop
+      }
+    ],
+    editorSettings: {
+      modules: {
+        imageDrop: true
+      }
     }
   }),
   computed: {
@@ -61,6 +75,9 @@ export default {
       .catch(err => {
         console.log(err)
       })
+    },
+    handleImageAdded (file, Editor, cursorLocation, resetUploader) {
+      console.log(file)
     },
     publish () {
       this.post.idUser = this.$store.state.login.user.id

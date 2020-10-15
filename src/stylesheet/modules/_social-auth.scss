@@ -1,0 +1,25 @@
+.social-auth {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  &__list {
+    list-style: none;
+    display: flex;
+  }
+  &__item {
+    display: inline-block;
+  }
+  &__button {
+    border: none;
+    width: 20px;
+    height: 20px;
+    margin-left: 20px;
+    cursor: pointer;
+    &:first-child {
+      margin-left: 0;
+    }
+  }
+  &__icon {
+    width: 100%;
+  }
+}

@@ -3,6 +3,8 @@ import { avatarGenerate } from '@/helpers/image'
 import router from '@/router'
 import { apolloClient } from '@/helpers/apollo/apollo'
 import { addUserMutation } from '@/helpers/apollo/queries'
+import { firebaseAuth } from '@/config/firebaseConfig'
+import { provider } from '@/helpers/auth'
 
 const SET_USER = 'SET_USER'
 const SET_USER_ERROR = 'SET_USER_ERROR'
@@ -78,6 +80,27 @@ export const LoginStore = {
       } catch (err) {
         commit(SET_LOADING, false)
         commit(SET_USER_ERROR, err.message)
+      }
+    },
+    googleAuth: async ({commit}) => {
+      try {
+        let { user } = await firebaseAuth().signInWithPopup(provider)
+        try {
+          const response = await apolloClient.mutate({ mutation: addUserMutation, variables: { displayName: user.displayName, photoUrl: user.photoURL, email: user.email, uid: user.uid}})
+          commit(SET_USER, {
+            displayName: user.displayName,
+            email: user.email,
+            photoUrl: user.photoURL,
+            id: user.uid
+          })
+          saveLoginLocal(true)
+          router.push("/")
+        } catch(err) {
+          saveLoginLocal(true)
+          router.push("/")
+        }
+      } catch(err) {
+        console.log(err)
       }
     },
     logoutUser: async ({commit}) => {

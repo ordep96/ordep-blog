@@ -1,5 +1,14 @@
 // styles wysiwyg
-@import "~vue-wysiwyg/dist/vueWysiwyg.css";
+//import "~vue-wysiwyg/dist/vueWysiwyg.css";
+
+
+// vue2 editor
+@import "~vue2-editor/dist/vue2-editor.css";
+
+/* Import the Quill styles you want */
+@import '~quill/dist/quill.core.css';
+@import '~quill/dist/quill.bubble.css';
+@import '~quill/dist/quill.snow.css';
 
 //settings
 @import './settings/colors';
@@ -17,7 +26,9 @@
 @import './core/core';
 
 /* Components */
+@import './modules/like';
 @import './modules/form';
 @import './modules/navbar';
 @import './modules/post-form';
 @import './modules/posts';
+@import './modules/social-auth';

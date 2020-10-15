@@ -10,6 +10,7 @@
         </div>
         <button class="form__btn" type="submit">login <atom-spinner v-if="loading" class="spinner" color="#fff" :size="20"/></button>
       </form>
+      <socialAuth />
       <div v-if="userError.error">
         <span>{{ userError.message }}</span>
       </div>
@@ -21,11 +22,13 @@
 <script>
 import { mapActions, mapGetters } from 'vuex'
 import { AtomSpinner } from 'epic-spinners'
+import socialAuth from '@/components/social-auth'
 
 export default {
   name: 'Login',
   components: {
-    AtomSpinner
+    AtomSpinner,
+    socialAuth
   },
   data: () => ({
     user: {

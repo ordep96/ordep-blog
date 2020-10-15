@@ -9,3 +9,5 @@ export const isLoginUser = (cb) => firebaseAuth().onAuthStateChanged(cb)
 export const logOut = () => firebaseAuth().signOut()
 
 export const currentUser = () => firebaseAuth().currentUser
+
+export const provider = new firebaseAuth.GoogleAuthProvider()
